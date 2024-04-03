@@ -2,21 +2,28 @@
 
 class LinksController < ApplicationController
 
-  before_action :set_link, only: [:edit, :update, :destroy]
+  before_action :set_link, only: [:edit, :update, :show, :destroy]
 
   def index
     @links = Link.recent_first
+
+    respond_to do |format|
+      format.html  # index.html.erb
+    end
   end
 
   def create
     @link = Link.new(links_params)
 
     if @link.save
+      redirect_to links_path
     else
       @links = Link.recent_first
       render :index, status: :unprocessable_entity
     end
+  end
 
+  def show
   end
 
   def update
@@ -29,10 +36,6 @@ class LinksController < ApplicationController
   end
 
   private
-
-  def set_link
-    @link = Link.find(params[:id])
-  end
 
   def links_params
     params.require(:link).permit(:url)
