@@ -13,4 +13,10 @@ class Link < ApplicationRecord
   def self.find(short_code)
     super ShortCode.decode(short_code)
   end
+
+  def domain
+    URI(url).host
+  rescue URI::InvalidURIError
+    # Ignored
+  end
 end

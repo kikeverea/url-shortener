@@ -1,6 +1,8 @@
-<%= tag.div id: dom_id(link), class: "flex gap-5" do %>
-  <%= link_to link.to_param, link %>
-  <div class="grow"><%= link.url %></div>
+<%= tag.div id: dom_id(link), class: "flex gap-5 items-center" do %>
+  <div class="grow flex gap-2 items-center">
+    <%= image_tag "https://www.google.com/s2/favicons?domain=#{link.domain}"%>
+    <%= link_to link.url, link, class: "no-underline" %>
+  </div>
   <div class="px-10"><%= pluralize link.views_count, "view" %></div>
 
   <%= link_to view_path(link), target: :_blank, data: { turbo: false } do %>
