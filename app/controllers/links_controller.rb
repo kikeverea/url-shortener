@@ -6,6 +6,7 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.recent_first
+    @link ||= Link.new
 
     respond_to do |format|
       format.html  # index.html.erb
@@ -24,12 +25,22 @@ class LinksController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html  # show.html.erb
+    end
   end
 
   def update
+    if @link.update(links_params)
+      redirect_to @link
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @link.destroy
+    redirect_to links_path
   end
 
   def edit

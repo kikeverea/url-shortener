@@ -1,7 +1,7 @@
 <h1>Url Shortener</h1>
 
-<%= render "form", link: Link.new %>
+<%= render "form", link: @link %>
 
-<div class="py-5">
+<div class="py-5 flex flex-col divide-y divide-gray-100">
   <%= render @links %>
 </div>

@@ -1,0 +1,9 @@
+<h1>Edit Url</h1>
+
+<%= render "form", link: @link %>
+
+<div class="flex gap-2 items-center py-2">
+  <%= link_to "Cancel", @link %>
+  or
+  <%= button_to "Delete", @link, method: :delete, data: { turbo_confirm: "Are you sure?"} %>
+</div>
